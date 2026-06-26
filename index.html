@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Roblox...</title>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const placeId = urlParams.get('placeId');
+        const gameInstanceId = urlParams.get('gameInstanceId');
+
+        if (placeId && gameInstanceId) {
+            window.location.href = `roblox://placeId=${placeId}&gameInstanceId=${gameInstanceId}`;
+            setTimeout(() => {
+                document.getElementById('fallback').style.display = 'block';
+            }, 2000);
+        } else {
+            document.body.innerHTML = "<h3>Error: Missing connection parameters.</h3>";
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #1a1a1a; 
+            color: #ffffff; 
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        a { 
+            display: inline-block; 
+            background-color: #007acc; 
+            color: white; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            border-radius: 5px; 
+        }
+    </style>
+</head>
+<body>
+    <h2>Redirecting to game...</h2>
+    <p>Please allow the browser to open the Roblox app.</p>
+    <div id="fallback" style="display: none;">
+        <p>App didn't open automatically?</p>
+        <script>
+            document.write('<a href="roblox://placeId=' + placeId + '&gameInstanceId=' + gameInstanceId + '">Click here to join</a>');
+        </script>
+    </div>
+</body>
+</html>
