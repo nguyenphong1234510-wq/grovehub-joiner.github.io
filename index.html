@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Roblox...</title>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const placeId = urlParams.get('placeId');
+        const gameInstanceId = urlParams.get('gameInstanceId');
+
+        if (placeId && gameInstanceId) {
+            window.location.href = `roblox://placeId=${placeId}&gameInstanceId=${gameInstanceId}`;
+            setTimeout(() => {
+                document.getElementById('fallback').style.display = 'block';
+            }, 2000);
+        } else {
+            document.body.innerHTML = "<h3>Lỗi: Thiếu thông tin tham gia Server!</h3>";
+        }
+    </script>
+    <style>
+        body { background-color: #1a1a1a; color: #ffffff; font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
+        a { display: inline-block; background-color: #007acc; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Đang chuyển hướng vào game...</h2>
+    <p>Vui lòng cho phép mở ứng dụng Roblox.</p>
+    <div id="fallback" style="display: none;">
+        <p>Không thấy app tự mở?</p>
+        <script>
+            document.write('<a href="roblox://placeId=' + urlParams.get('placeId') + '&gameInstanceId=' + urlParams.get('gameInstanceId') + '">Bấm vào đây để mở Roblox</a>');
+        </script>
+    </div>
+</body>
+</html>
